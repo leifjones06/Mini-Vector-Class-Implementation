@@ -1,22 +1,16 @@
 class MiniVector
 {
-    private:
-    int* data;
-    int size;
-    int capacity;
-
-    public:
-    MiniVector()
+    MiniVector::MiniVector()
     { 
         size = 0;
         capacity = 4; //random number to begin with, will be changed as needed
         data = new int[capacity];
     }
-    ~MiniVector()
+    MiniVector::~MiniVector()
     {
         delete[] data;
     }
-    void push_back(int value)
+    void MiniVector::push_back(int value)
     {
         if(size < capacity)  //add values if capacity isn't full
         {
@@ -41,5 +35,13 @@ class MiniVector
     int& operator[](int index) //lets user modify elements like typical array
     {
         return data[index];
+    }
+    void remove(int index) //lets user delete element at specific index while keeping other elements in order
+    {
+        for(int i = index; i < (size - 1); i++)
+        {
+            data[i] = data[i+1];
+        }
+        size--;
     }
 };
